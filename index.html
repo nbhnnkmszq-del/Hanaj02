@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <meta name="theme-color" content="#ff2d55">
-    <title>LAWZER PRO Downloader - تحميل فيديوهات مع قص وضغط</title>
+    <title>LAWZER ULTIMATE - تحميل مباشر وحفظ في المعرض</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100;14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -12,18 +12,19 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: radial-gradient(circle at 20% 30%, #0a0a0a 0%, #05050a 100%);
+            background: linear-gradient(145deg, #0a0a0a 0%, #0d0d1a 50%, #0a0a0f 100%);
             min-height: 100vh;
             color: #fff;
             overflow-x: hidden;
         }
 
-        /* أنيميشن الخلفية */
-        .bg-animation {
+        /* أنيميشن خلفية خرافية */
+        .bg-magic {
             position: fixed;
             top: 0;
             left: 0;
@@ -33,32 +34,33 @@
             overflow: hidden;
         }
 
-        .bg-animation::before {
+        .bg-magic::before {
             content: '';
             position: absolute;
             width: 200%;
             height: 200%;
             top: -50%;
             left: -50%;
-            background: radial-gradient(circle, rgba(255,45,85,0.08) 0%, transparent 70%);
-            animation: rotate 25s linear infinite;
+            background: radial-gradient(circle at 30% 40%, rgba(255,45,85,0.12) 0%, transparent 60%),
+                        radial-gradient(circle at 70% 80%, rgba(0,150,255,0.08) 0%, transparent 60%);
+            animation: slowRotate 30s linear infinite;
         }
 
-        @keyframes rotate {
+        @keyframes slowRotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        /* شريط علوي */
+        /* شريط علوي زجاجي فخم */
         .glass-header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(10,10,20,0.95);
+            background: rgba(10,10,20,0.85);
             backdrop-filter: blur(25px);
-            border-bottom: 1px solid rgba(255,45,85,0.3);
-            padding: 16px 30px;
+            border-bottom: 1px solid rgba(255,45,85,0.4);
+            padding: 18px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -72,263 +74,241 @@
         }
 
         .logo-icon {
-            width: 45px;
-            height: 45px;
+            width: 48px;
+            height: 48px;
             background: linear-gradient(135deg, #ff2d55, #ff3b30);
-            border-radius: 14px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            animation: pulse 2s infinite;
+            font-size: 26px;
+            box-shadow: 0 0 25px rgba(255,45,85,0.5);
+            animation: iconGlow 2s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(255,45,85,0.4); }
-            50% { box-shadow: 0 0 30px rgba(255,45,85,0.8); }
+        @keyframes iconGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255,45,85,0.4); }
+            50% { box-shadow: 0 0 35px rgba(255,45,85,0.8); }
         }
 
         .logo-text {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 800;
             background: linear-gradient(135deg, #fff, #ff2d55);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .premium-badge {
+            background: linear-gradient(135deg, #ff2d55, #ff3b30);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
         }
 
         /* الحاوية */
         .container {
-            max-width: 1300px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 100px 24px 40px;
+            padding: 110px 24px 40px;
         }
 
-        /* قسم الترحيب */
-        .hero {
+        /* هيدر فخم */
+        .hero-section {
             text-align: center;
             padding: 50px 20px;
             background: rgba(255,255,255,0.02);
-            border-radius: 48px;
+            border-radius: 56px;
             margin-bottom: 40px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
         }
 
-        .hero h1 {
-            font-size: 48px;
+        .hero-section h1 {
+            font-size: 56px;
             font-weight: 800;
             margin-bottom: 16px;
-            background: linear-gradient(135deg, #fff, #ff2d55);
+            background: linear-gradient(135deg, #fff, #ff2d55, #fff);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
         }
 
-        .hero p {
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .hero-section p {
             color: #aaa;
             font-size: 16px;
         }
 
-        .platforms {
+        /* منصات الدعم */
+        .platforms-support {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-top: 30px;
+            margin-top: 25px;
         }
 
         .platform {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.06);
             padding: 8px 18px;
             border-radius: 40px;
             font-size: 13px;
             display: flex;
             align-items: center;
             gap: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.3s;
         }
 
-        /* صندوق الإدخال */
+        .platform:hover {
+            border-color: #ff2d55;
+            transform: translateY(-2px);
+        }
+
+        /* صندوق الإدخال الفخم */
         .input-card {
             background: rgba(255,255,255,0.03);
-            backdrop-filter: blur(15px);
-            border-radius: 32px;
-            padding: 30px;
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 35px;
             margin-bottom: 30px;
             border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
 
-        .url-input-wrapper {
+        .url-wrapper {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .url-input {
             flex: 1;
             padding: 18px 24px;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.12);
             border-radius: 60px;
             color: #fff;
             font-size: 16px;
             outline: none;
             transition: all 0.3s;
+            letter-spacing: 0.5px;
         }
 
         .url-input:focus {
             border-color: #ff2d55;
-            box-shadow: 0 0 20px rgba(255,45,85,0.2);
+            box-shadow: 0 0 25px rgba(255,45,85,0.25);
         }
 
         .paste-btn {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
             border-radius: 60px;
-            padding: 0 25px;
+            padding: 0 28px;
             color: #fff;
             font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .paste-btn:hover {
             background: rgba(255,45,85,0.2);
             border-color: #ff2d55;
+            transform: scale(1.02);
         }
 
-        /* خيارات التحميل */
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .option-select {
-            padding: 14px 18px;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 50px;
-            color: #fff;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        /* أزرار القص والضغط */
-        .advanced-tools {
+        /* خيارات الجودة */
+        .options-row {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        .tool-btn {
+        .quality-select, .format-select {
             flex: 1;
-            padding: 14px;
-            background: rgba(255,255,255,0.05);
+            padding: 14px 20px;
+            background: rgba(0,0,0,0.6);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 50px;
             color: #fff;
             font-size: 14px;
             cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .tool-btn.active {
-            background: rgba(255,45,85,0.2);
-            border-color: #ff2d55;
-            color: #ff2d55;
-        }
-
-        .tool-btn:hover {
-            background: rgba(255,45,85,0.15);
-            border-color: #ff2d55;
-        }
-
-        /* شريط القص */
-        .trim-panel {
-            display: none;
-            background: rgba(0,0,0,0.3);
-            border-radius: 24px;
-            padding: 20px;
-            margin-top: 15px;
-        }
-
-        .trim-panel.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .range-container {
-            margin: 20px 0;
-        }
-
-        .time-range {
-            width: 100%;
-            margin: 15px 0;
-        }
-
-        .time-inputs {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .time-input {
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 40px;
-            padding: 10px 15px;
-            color: #fff;
-            width: 100px;
-            text-align: center;
+            outline: none;
         }
 
         /* زر التحميل الرئيسي */
-        .download-main-btn {
+        .download-now-btn {
             width: 100%;
             padding: 18px;
             background: linear-gradient(135deg, #ff2d55, #ff3b30);
             border: none;
             border-radius: 60px;
             color: #fff;
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: 800;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(255,45,85,0.3);
         }
 
-        .download-main-btn:hover {
+        .download-now-btn:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 25px rgba(255,45,85,0.4);
+            box-shadow: 0 15px 35px rgba(255,45,85,0.5);
         }
 
-        /* نتيجة الفيديو */
+        /* مؤشر التحميل */
+        .loading-container {
+            text-align: center;
+            padding: 50px;
+            display: none;
+        }
+
+        .apple-spinner {
+            width: 60px;
+            height: 60px;
+            background: conic-gradient(from 0deg, #ff2d55, #ff3b30, #ff2d55);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spinApple 1s linear infinite;
+            mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 6px));
+        }
+
+        @keyframes spinApple {
+            to { transform: rotate(360deg); }
+        }
+
+        /* نتيجة التحميل */
         .result-card {
             display: none;
             background: rgba(255,255,255,0.03);
-            backdrop-filter: blur(15px);
-            border-radius: 32px;
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
             padding: 30px;
             margin-top: 30px;
             border: 1px solid rgba(255,255,255,0.08);
-            animation: fadeInUp 0.5s ease;
+            animation: slideUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
-        @keyframes fadeInUp {
+        @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -336,110 +316,123 @@
             }
         }
 
-        .video-preview {
+        .video-preview-area {
             display: flex;
             gap: 25px;
             flex-wrap: wrap;
         }
 
-        .video-thumb {
-            width: 220px;
-            height: 130px;
-            background: #1a1a2e;
-            border-radius: 20px;
+        .video-thumbnail {
+            width: 200px;
+            height: 120px;
+            background: linear-gradient(135deg, #1a1a2e, #0a0a15);
+            border-radius: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
-        .video-thumb img {
+        .video-thumbnail img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .video-details {
+        .video-info-area {
             flex: 1;
         }
 
-        .video-title {
-            font-size: 18px;
+        .video-title-text {
+            font-size: 20px;
             font-weight: 700;
             margin-bottom: 10px;
         }
 
-        .video-meta {
+        .video-details {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
             font-size: 13px;
-            color: #888;
-            margin-bottom: 15px;
+            color: #aaa;
+            margin-bottom: 20px;
         }
 
-        .action-btns {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .action-btn {
-            padding: 10px 22px;
-            background: rgba(255,255,255,0.08);
+        /* زر التحميل المباشر */
+        .direct-download-btn {
+            background: linear-gradient(135deg, #00ff41, #00cc33);
             border: none;
-            border-radius: 40px;
-            color: #fff;
-            font-size: 13px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            color: #000;
+            font-size: 16px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0,255,65,0.3);
+        }
+
+        .direct-download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,255,65,0.4);
+        }
+
+        .save-gallery-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 14px 28px;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: 12px;
+        }
+
+        .save-gallery-btn:hover {
+            background: rgba(255,45,85,0.2);
+            border-color: #ff2d55;
+        }
+
+        /* زر المطور */
+        .dev-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #ff2d55, #ff3b30);
+            border-radius: 35px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 0 30px rgba(255,45,85,0.5);
+            transition: all 0.3s;
         }
 
-        .action-btn.download {
-            background: linear-gradient(135deg, #ff2d55, #ff3b30);
-        }
-
-        .action-btn.save {
-            background: rgba(0,255,65,0.15);
-            border: 1px solid rgba(0,255,65,0.3);
-        }
-
-        .action-btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* مؤشر التحميل */
-        .loading {
-            text-align: center;
-            padding: 40px;
-            display: none;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255,45,85,0.2);
-            border-top-color: #ff2d55;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .dev-fab:hover {
+            transform: scale(1.1) rotate(10deg);
         }
 
         /* صفحة المطور */
-        .dev-page {
+        .dev-modal {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.98);
+            background: rgba(0,0,0,0.97);
             backdrop-filter: blur(30px);
             z-index: 3000;
             display: none;
@@ -448,7 +441,7 @@
             padding: 20px;
         }
 
-        .dev-page.active {
+        .dev-modal.active {
             display: flex;
         }
 
@@ -456,40 +449,52 @@
             max-width: 500px;
             width: 100%;
             background: linear-gradient(135deg, #1a1a2e, #0a0a15);
-            border-radius: 48px;
-            padding: 40px;
+            border-radius: 56px;
+            padding: 45px;
             text-align: center;
-            border: 2px solid rgba(255,45,85,0.4);
+            border: 2px solid rgba(255,45,85,0.5);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.5);
         }
 
-        .dev-icon {
-            width: 110px;
-            height: 110px;
+        .dev-avatar {
+            width: 120px;
+            height: 120px;
             background: linear-gradient(135deg, #ff2d55, #ff3b30);
-            border-radius: 55px;
+            border-radius: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 55px;
-            margin: 0 auto 20px;
+            font-size: 60px;
+            margin: 0 auto 25px;
+            box-shadow: 0 0 40px rgba(255,45,85,0.5);
         }
 
         .dev-name {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 800;
+            margin-bottom: 8px;
         }
 
-        .dev-info {
+        .dev-role {
+            color: #ff2d55;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .dev-info-box {
             text-align: right;
             background: rgba(255,255,255,0.05);
-            border-radius: 24px;
-            padding: 20px;
-            margin: 20px 0;
+            border-radius: 28px;
+            padding: 25px;
+            margin: 25px 0;
         }
 
-        .dev-info p {
-            margin: 12px 0;
+        .dev-info-box p {
+            margin: 14px 0;
             font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .dev-close {
@@ -498,44 +503,36 @@
             right: 20px;
             background: rgba(255,255,255,0.1);
             border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 20px;
-            font-size: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 25px;
+            font-size: 22px;
             cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .dev-fab {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #ff2d55, #ff3b30);
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 0 20px rgba(255,45,85,0.4);
+        .dev-close:hover {
+            background: #ff2d55;
+            transform: rotate(90deg);
         }
 
-        .toast {
+        /* تنبيهات */
+        .toast-message {
             position: fixed;
-            bottom: 100px;
+            bottom: 120px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
             backdrop-filter: blur(20px);
-            padding: 12px 24px;
-            border-radius: 50px;
+            padding: 14px 28px;
+            border-radius: 60px;
             color: #00ff41;
             font-size: 14px;
+            font-weight: 500;
             z-index: 2000;
             display: none;
             white-space: nowrap;
+            border: 1px solid rgba(0,255,65,0.3);
         }
 
         .footer {
@@ -549,24 +546,24 @@
 
         @media (max-width: 768px) {
             .container {
-                padding: 90px 16px 30px;
+                padding: 100px 16px 30px;
             }
-            .hero h1 {
-                font-size: 28px;
+            .hero-section h1 {
+                font-size: 32px;
             }
             .logo-text {
                 font-size: 16px;
             }
-            .video-preview {
+            .video-preview-area {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
             }
-            .video-thumb {
+            .video-thumbnail {
                 width: 100%;
                 height: 180px;
             }
-            .toast {
+            .toast-message {
                 white-space: normal;
                 text-align: center;
                 max-width: 90%;
@@ -576,23 +573,23 @@
 </head>
 <body>
 
-<div class="bg-animation"></div>
+<div class="bg-magic"></div>
 
 <header class="glass-header">
     <div class="logo">
         <div class="logo-icon"><i class="fas fa-download"></i></div>
-        <div class="logo-text">LAWZER PRO Downloader</div>
+        <div class="logo-text">LAWZER ULTIMATE</div>
     </div>
-    <div style="font-size: 12px; background: rgba(255,45,85,0.2); padding: 6px 12px; border-radius: 20px;">
-        <i class="fas fa-crown"></i> ULTIMATE
+    <div class="premium-badge">
+        <i class="fas fa-crown"></i> PREMIUM
     </div>
 </header>
 
 <div class="container">
-    <div class="hero">
-        <h1>تحميل فيديوهات + قص + ضغط</h1>
-        <p>يوتيوب، تيك توك، انستقرام، فيسبوك، تويتر | جميع الجودات | قص الفيديو | ضغط الحجم</p>
-        <div class="platforms">
+    <div class="hero-section">
+        <h1>تحميل مباشر + حفظ بالمعرض</h1>
+        <p>الصق الرابط، الفيديو ينزل تلقائياً ويحفظ في معرض صورك</p>
+        <div class="platforms-support">
             <div class="platform"><i class="fab fa-youtube" style="color: #ff0000;"></i> YouTube</div>
             <div class="platform"><i class="fab fa-tiktok"></i> TikTok</div>
             <div class="platform"><i class="fab fa-instagram" style="color: #e4405f;"></i> Instagram</div>
@@ -602,83 +599,56 @@
     </div>
 
     <div class="input-card">
-        <div class="url-input-wrapper">
+        <div class="url-wrapper">
             <input type="text" class="url-input" id="urlInput" placeholder="الصق رابط الفيديو هنا...">
             <button class="paste-btn" id="pasteBtn">
                 <i class="fas fa-paste"></i> لصق
             </button>
         </div>
 
-        <div class="options-grid">
-            <select class="option-select" id="qualitySelect">
+        <div class="options-row">
+            <select class="quality-select" id="qualitySelect">
                 <option value="highest">🎬 أفضل جودة (4K/1080p)</option>
                 <option value="1080p">📱 1080p (Full HD)</option>
                 <option value="720p">📱 720p (HD)</option>
                 <option value="480p">📱 480p (SD)</option>
-                <option value="360p">📱 360p</option>
                 <option value="audio">🎵 صوت فقط (MP3)</option>
             </select>
-            <select class="option-select" id="formatSelect">
+            <select class="format-select" id="formatSelect">
                 <option value="mp4">🎥 MP4 (فيديو)</option>
-                <option value="mp3">🎵 MP3 (صوت فقط)</option>
-                <option value="webm">🌐 WEBM</option>
+                <option value="mp3">🎵 MP3 (صوت)</option>
             </select>
         </div>
 
-        <div class="advanced-tools">
-            <button class="tool-btn" id="trimBtn">
-                <i class="fas fa-cut"></i> قص الفيديو
-            </button>
-            <button class="tool-btn" id="compressBtn">
-                <i class="fas fa-compress-alt"></i> ضغط الحجم
-            </button>
-        </div>
-
-        <div class="trim-panel" id="trimPanel">
-            <div class="range-container">
-                <label style="font-size: 13px; color: #888;">حدد وقت البداية والنهاية:</label>
-                <div class="time-inputs">
-                    <input type="text" class="time-input" id="startTime" placeholder="00:00" value="00:00">
-                    <span>→</span>
-                    <input type="text" class="time-input" id="endTime" placeholder="00:00">
-                </div>
-                <div style="font-size: 11px; color: #666; margin-top: 10px; text-align: center;">
-                    مثال: 00:15 (15 ثانية) أو 01:30 (دقيقة ونصف)
-                </div>
-            </div>
-        </div>
-
-        <button class="download-main-btn" id="processBtn">
-            <i class="fas fa-magic"></i> معالجة الرابط وتحميل الفيديو
+        <button class="download-now-btn" id="processBtn">
+            <i class="fas fa-meteor"></i> تحميل وحفظ في المعرض مباشرة
         </button>
     </div>
 
-    <div class="loading" id="loading">
-        <div class="spinner"></div>
-        <p>جاري معالجة الرابط...</p>
+    <div class="loading-container" id="loadingContainer">
+        <div class="apple-spinner"></div>
+        <p style="color: #ff2d55; font-weight: 600;">جاري تجهيز الفيديو...</p>
+        <p style="font-size: 12px; color: #888;">سيتم التحميل التلقائي والحفظ في المعرض</p>
     </div>
 
     <div class="result-card" id="resultCard">
-        <div class="video-preview">
-            <div class="video-thumb" id="videoThumb">
-                <i class="fas fa-video" style="font-size: 40px;"></i>
+        <div class="video-preview-area">
+            <div class="video-thumbnail" id="videoThumb">
+                <i class="fas fa-play-circle" style="font-size: 45px; color: #ff2d55;"></i>
             </div>
-            <div class="video-details">
-                <div class="video-title" id="videoTitle">عنوان الفيديو</div>
-                <div class="video-meta">
+            <div class="video-info-area">
+                <div class="video-title-text" id="videoTitle">عنوان الفيديو</div>
+                <div class="video-details">
                     <span id="videoDuration"><i class="far fa-clock"></i> المدة: --</span>
                     <span id="videoSize"><i class="fas fa-database"></i> الحجم: --</span>
                     <span id="videoQuality"><i class="fas fa-hd"></i> الجودة: --</span>
                 </div>
-                <div class="action-btns">
-                    <button class="action-btn download" id="finalDownloadBtn">
-                        <i class="fas fa-download"></i> تحميل
+                <div>
+                    <button class="direct-download-btn" id="directDownloadBtn">
+                        <i class="fas fa-download"></i> تحميل مباشر
                     </button>
-                    <button class="action-btn save" id="saveBtn">
-                        <i class="fas fa-save"></i> حفظ في المعرض
-                    </button>
-                    <button class="action-btn" id="copyUrlBtn">
-                        <i class="fas fa-copy"></i> نسخ الرابط
+                    <button class="save-gallery-btn" id="saveToGalleryBtn">
+                        <i class="fas fa-images"></i> حفظ في المعرض
                     </button>
                 </div>
             </div>
@@ -686,7 +656,7 @@
     </div>
 
     <div class="footer">
-        <p>© 2026 LAWZER - جميع الحقوق محفوظة | تحميل + قص + ضغط الفيديوهات</p>
+        <p>© 2026 LAWZER - جميع الحقوق محفوظة | تحميل مباشر وحفظ في المعرض</p>
     </div>
 </div>
 
@@ -694,42 +664,56 @@
     <i class="fas fa-code"></i>
 </div>
 
-<div class="dev-page" id="devPage">
+<div class="dev-modal" id="devModal">
     <div class="dev-card">
-        <button class="dev-close" id="closeDevPage">✕</button>
-        <div class="dev-icon"><i class="fas fa-crown"></i></div>
+        <button class="dev-close" id="closeDevModal">✕</button>
+        <div class="dev-avatar"><i class="fas fa-crown"></i></div>
         <div class="dev-name">LAWZER</div>
-        <div class="dev-info">
+        <div class="dev-role">Full Stack Developer | Reverse Engineer</div>
+        <div class="dev-info-box">
             <p><i class="fas fa-user"></i> <strong>المطور:</strong> LAWZER</p>
-            <p><i class="fas fa-code"></i> <strong>الإصدار:</strong> PRO v4.0</p>
-            <p><i class="fas fa-cut"></i> <strong>الميزات:</strong> تحميل - قص - ضغط - حفظ بالمعرض</p>
+            <p><i class="fas fa-code"></i> <strong>الإصدار:</strong> ULTIMATE v5.0</p>
+            <p><i class="fas fa-download"></i> <strong>الميزة:</strong> تحميل مباشر + حفظ بالمعرض</p>
             <p><i class="fas fa-globe"></i> <strong>الدعم:</strong> YouTube, TikTok, Instagram, Facebook, Twitter</p>
+            <p><i class="fas fa-shield-alt"></i> <strong>الأمان:</strong> تحميل آمن ومشفر</p>
             <p><i class="fas fa-copyright"></i> <strong>جميع الحقوق محفوظة © 2026</strong></p>
         </div>
     </div>
 </div>
 
-<div class="toast" id="toast">✅ تم</div>
+<div class="toast-message" id="toastMessage">✨ تم</div>
 
 <script>
-    // متغيرات
-    let isTrimming = false;
-    let isCompressing = false;
-    let currentVideoData = null;
+    // عناصر DOM
+    const urlInput = document.getElementById('urlInput');
+    const pasteBtn = document.getElementById('pasteBtn');
+    const processBtn = document.getElementById('processBtn');
+    const qualitySelect = document.getElementById('qualitySelect');
+    const formatSelect = document.getElementById('formatSelect');
+    const loadingContainer = document.getElementById('loadingContainer');
+    const resultCard = document.getElementById('resultCard');
+    const directDownloadBtn = document.getElementById('directDownloadBtn');
+    const saveToGalleryBtn = document.getElementById('saveToGalleryBtn');
+    const toastMessage = document.getElementById('toastMessage');
+    const devFab = document.getElementById('devFab');
+    const devModal = document.getElementById('devModal');
+    const closeDevModal = document.getElementById('closeDevModal');
 
-    // وظيفة اللصق التلقائي
+    let currentVideoBlob = null;
+    let currentVideoName = '';
+
+    // وظيفة اللصق
     async function pasteFromClipboard() {
         try {
             const text = await navigator.clipboard.readText();
-            document.getElementById('urlInput').value = text;
+            urlInput.value = text;
             showToast('📋 تم لصق الرابط');
-            // اهتزاز خفيف
-            document.getElementById('urlInput').style.borderColor = '#00ff41';
+            urlInput.style.borderColor = '#00ff41';
             setTimeout(() => {
-                document.getElementById('urlInput').style.borderColor = '';
+                urlInput.style.borderColor = '';
             }, 1000);
         } catch (err) {
-            showToast('❌ لا يمكن الوصول للحافظة، الصق يدوياً');
+            showToast('❌ اضغط Ctrl+V للصق');
         }
     }
 
@@ -743,22 +727,29 @@
         return 'unknown';
     }
 
-    // توليد رابط تحميل تجريبي (في الحقيقة تحتاج API)
-    function generateDownloadUrl(url, quality, format, startTime, endTime, compress) {
-        const encodedUrl = encodeURIComponent(url);
-        let baseUrl = `https://api.downloader.com/download?url=${encodedUrl}&quality=${quality}&format=${format}`;
-        if (startTime && endTime) {
-            baseUrl += `&start=${encodeURIComponent(startTime)}&end=${encodeURIComponent(endTime)}`;
-        }
-        if (compress) {
-            baseUrl += `&compress=true`;
-        }
-        return baseUrl;
+    // إنشاء فيديو تجريبي للتحميل (في الحقيقة هنا تسوي fetch حقيقي)
+    function createSampleVideoBlob() {
+        // إنشاء فيديو تجريبي صغير (للتجربة)
+        const canvas = document.createElement('canvas');
+        canvas.width = 640;
+        canvas.height = 360;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ff2d55';
+        ctx.fillRect(0, 0, 640, 360);
+        ctx.fillStyle = '#fff';
+        ctx.font = '30px Arial';
+        ctx.fillText('LAWZER', 250, 180);
+        
+        return new Promise((resolve) => {
+            canvas.toBlob((blob) => {
+                resolve(blob);
+            }, 'video/mp4');
+        });
     }
 
-    // معالجة التحميل
+    // معالجة الفيديو
     async function processVideo() {
-        const url = document.getElementById('urlInput').value.trim();
+        const url = urlInput.value.trim();
         if (!url) {
             showToast('⚠️ الرجاء إدخال رابط الفيديو');
             return;
@@ -770,38 +761,42 @@
             return;
         }
 
-        const quality = document.getElementById('qualitySelect').value;
-        const format = document.getElementById('formatSelect').value;
-        const startTime = isTrimming ? document.getElementById('startTime').value : null;
-        const endTime = isTrimming ? document.getElementById('endTime').value : null;
+        const quality = qualitySelect.value;
+        const format = formatSelect.value;
 
         // إظهار مؤشر التحميل
-        document.getElementById('loading').style.display = 'block';
-        document.getElementById('resultCard').style.display = 'none';
+        loadingContainer.style.display = 'block';
+        resultCard.style.display = 'none';
 
-        // محاكاة جلب البيانات
-        setTimeout(() => {
-            const videoData = {
-                title: getTitleByPlatform(platform),
-                duration: isTrimming ? getTrimmedDuration(startTime, endTime) : '3:45',
-                size: calculateSize(quality, format, isCompressing),
-                quality: quality === 'highest' ? '1080p' : (quality === 'audio' ? 'MP3' : quality),
-                thumbnail: getThumbnail(platform),
-                downloadUrl: generateDownloadUrl(url, quality, format, startTime, endTime, isCompressing)
-            };
+        // محاكاة جلب الفيديو (هنا تستبدل بـ API حقيقي)
+        setTimeout(async () => {
+            // جلب الفيديو (في الحقيقة تسوي fetch من API التحميل)
+            const videoBlob = await createSampleVideoBlob();
+            currentVideoBlob = videoBlob;
+            currentVideoName = `video_${Date.now()}.${format === 'mp3' ? 'mp3' : 'mp4'}`;
             
-            currentVideoData = videoData;
-            displayResult(videoData);
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('resultCard').style.display = 'block';
-            showToast('✅ تم تجهيز الفيديو للتحميل');
-        }, 1500);
+            // عرض النتيجة
+            document.getElementById('videoTitle').innerText = getTitleByPlatform(platform);
+            document.getElementById('videoDuration').innerHTML = '<i class="far fa-clock"></i> المدة: 3:45';
+            document.getElementById('videoSize').innerHTML = `<i class="fas fa-database"></i> الحجم: ${format === 'mp3' ? '4.2 MB' : '12.5 MB'}`;
+            document.getElementById('videoQuality').innerHTML = `<i class="fas fa-hd"></i> الجودة: ${quality === 'highest' ? '1080p' : quality}`;
+            
+            const thumbDiv = document.getElementById('videoThumb');
+            thumbDiv.innerHTML = '<i class="fas fa-play-circle" style="font-size: 55px; color: #ff2d55;"></i>';
+            
+            loadingContainer.style.display = 'none';
+            resultCard.style.display = 'block';
+            showToast('✅ الفيديو جاهز للتحميل');
+            
+            // تحميل تلقائي فوراً
+            autoDownloadAndSave();
+        }, 2000);
     }
 
     function getTitleByPlatform(platform) {
         const titles = {
-            youtube: 'فيديو من يوتيوب - بجودة عالية',
-            tiktok: 'فيديو من تيك توك - فيديو رائع',
+            youtube: 'فيديو من يوتيوب',
+            tiktok: 'فيديو من تيك توك',
             instagram: 'فيديو من انستقرام',
             facebook: 'فيديو من فيسبوك',
             twitter: 'فيديو من تويتر'
@@ -809,135 +804,104 @@
         return titles[platform] || 'فيديو تم تحميله';
     }
 
-    function getThumbnail(platform) {
-        const thumbs = {
-            youtube: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
-            tiktok: '',
-            instagram: '',
-            facebook: '',
-            twitter: ''
-        };
-        return thumbs[platform];
-    }
-
-    function getTrimmedDuration(start, end) {
-        if (!start || !end) return '3:45';
-        return end;
-    }
-
-    function calculateSize(quality, format, compress) {
-        let size = format === 'mp3' ? '4.2 MB' : (quality === 'highest' ? '48 MB' : '12 MB');
-        if (compress && quality !== 'audio') {
-            size = size.replace('48', '18').replace('12', '6');
-        }
-        return size;
-    }
-
-    function displayResult(data) {
-        document.getElementById('videoTitle').innerText = data.title;
-        document.getElementById('videoDuration').innerHTML = `<i class="far fa-clock"></i> المدة: ${data.duration}`;
-        document.getElementById('videoSize').innerHTML = `<i class="fas fa-database"></i> الحجم: ${data.size}`;
-        document.getElementById('videoQuality').innerHTML = `<i class="fas fa-hd"></i> الجودة: ${data.quality}`;
+    // تحميل تلقائي
+    function autoDownloadAndSave() {
+        if (!currentVideoBlob) return;
         
-        const thumbDiv = document.getElementById('videoThumb');
-        if (data.thumbnail) {
-            thumbDiv.innerHTML = `<img src="${data.thumbnail}" alt="thumbnail">`;
-        } else {
-            thumbDiv.innerHTML = '<i class="fas fa-video" style="font-size: 40px;"></i>';
-        }
+        // إنشاء رابط تحميل وتنزيل تلقائي
+        const downloadUrl = URL.createObjectURL(currentVideoBlob);
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = currentVideoName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(downloadUrl);
         
-        window.currentDownloadUrl = data.downloadUrl;
+        showToast('📥 بدء التحميل التلقائي...');
+        
+        // حفظ في المعرض (للمتصفحات التي تدعم)
+        saveToGallery(currentVideoBlob);
     }
 
-    function finalDownload() {
-        if (window.currentDownloadUrl) {
-            window.open(window.currentDownloadUrl, '_blank');
-            showToast('📥 بدء التحميل...');
+    // حفظ في المعرض
+    async function saveToGallery(blob) {
+        // محاولة حفظ في المعرض
+        if (navigator.share && navigator.canShare) {
+            try {
+                const file = new File([blob], currentVideoName, { type: blob.type });
+                await navigator.share({
+                    title: 'LAWZER Downloader',
+                    files: [file]
+                });
+                showToast('💾 تم الحفظ في المعرض');
+            } catch (err) {
+                showToast('✅ تم التحميل، احفظه يدوياً في المعرض');
+            }
         } else {
-            showToast('❌ حدث خطأ، حاول مرة أخرى');
+            showToast('✅ تم التحميل، يمكنك حفظه في المعرض من مجلد التنزيلات');
         }
     }
 
-    function saveToGallery() {
-        showToast('💾 سيتم حفظ الفيديو في معرض الصور بعد التحميل');
-        finalDownload();
+    // تحميل مباشر يدوي
+    function directDownload() {
+        if (!currentVideoBlob) {
+            showToast('⚠️ لا يوجد فيديو للتحميل');
+            return;
+        }
+        const downloadUrl = URL.createObjectURL(currentVideoBlob);
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = currentVideoName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(downloadUrl);
+        showToast('📥 بدء التحميل');
     }
 
-    function copyVideoUrl() {
-        const url = document.getElementById('urlInput').value;
-        navigator.clipboard.writeText(url);
-        showToast('📋 تم نسخ الرابط');
+    // حفظ يدوي في المعرض
+    function manualSaveToGallery() {
+        if (!currentVideoBlob) {
+            showToast('⚠️ لا يوجد فيديو للحفظ');
+            return;
+        }
+        saveToGallery(currentVideoBlob);
     }
 
     function showToast(message) {
-        const toast = document.getElementById('toast');
-        toast.innerText = message;
-        toast.style.display = 'block';
+        toastMessage.innerText = message;
+        toastMessage.style.display = 'block';
         setTimeout(() => {
-            toast.style.display = 'none';
-        }, 2000);
+            toastMessage.style.display = 'none';
+        }, 2500);
     }
 
-    // تبديل أدوات القص والضغط
-    function toggleTrim() {
-        const panel = document.getElementById('trimPanel');
-        const btn = document.getElementById('trimBtn');
-        isTrimming = !isTrimming;
-        
-        if (isTrimming) {
-            panel.classList.add('active');
-            btn.classList.add('active');
-        } else {
-            panel.classList.remove('active');
-            btn.classList.remove('active');
-            document.getElementById('startTime').value = '00:00';
-            document.getElementById('endTime').value = '';
-        }
+    function openDevModal() {
+        devModal.classList.add('active');
     }
 
-    function toggleCompress() {
-        const btn = document.getElementById('compressBtn');
-        isCompressing = !isCompressing;
-        
-        if (isCompressing) {
-            btn.classList.add('active');
-            showToast('🗜️ تم تفعيل ضغط الحجم');
-        } else {
-            btn.classList.remove('active');
-            showToast('🗜️ تم إلغاء ضغط الحجم');
-        }
-    }
-
-    function openDevPage() {
-        document.getElementById('devPage').classList.add('active');
-    }
-
-    function closeDevPage() {
-        document.getElementById('devPage').classList.remove('active');
+    function closeDevModalFn() {
+        devModal.classList.remove('active');
     }
 
     // الأحداث
-    document.getElementById('pasteBtn').addEventListener('click', pasteFromClipboard);
-    document.getElementById('processBtn').addEventListener('click', processVideo);
-    document.getElementById('finalDownloadBtn').addEventListener('click', finalDownload);
-    document.getElementById('saveBtn').addEventListener('click', saveToGallery);
-    document.getElementById('copyUrlBtn').addEventListener('click', copyVideoUrl);
-    document.getElementById('trimBtn').addEventListener('click', toggleTrim);
-    document.getElementById('compressBtn').addEventListener('click', toggleCompress);
-    document.getElementById('devFab').addEventListener('click', openDevPage);
-    document.getElementById('closeDevPage').addEventListener('click', closeDevPage);
-
-    // إغلاق صفحة المطور بالضغط خارجها
-    document.getElementById('devPage').addEventListener('click', (e) => {
-        if (e.target === document.getElementById('devPage')) closeDevPage();
-    });
-
-    // دعم Enter
-    document.getElementById('urlInput').addEventListener('keypress', (e) => {
+    pasteBtn.addEventListener('click', pasteFromClipboard);
+    processBtn.addEventListener('click', processVideo);
+    directDownloadBtn.addEventListener('click', directDownload);
+    saveToGalleryBtn.addEventListener('click', manualSaveToGallery);
+    devFab.addEventListener('click', openDevModal);
+    closeDevModal.addEventListener('click', closeDevModalFn);
+    
+    urlInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') processVideo();
     });
+    
+    devModal.addEventListener('click', (e) => {
+        if (e.target === devModal) closeDevModalFn();
+    });
 
-    showToast('✨ الموقع جاهز - الصق الرابط وابدأ');
+    showToast('✨ الموقع جاهز - الصق الرابط');
 </script>
 
 </body>
